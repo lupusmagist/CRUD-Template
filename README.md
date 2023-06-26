@@ -1,10 +1,6 @@
-# Phone Manager
+# Basic CRUD template
 
-Used to set configs for snom and yealink endpoints.  
-Phone gets a IP/DNS from our DHCP server. The DNS server must by ours.  
-We modify the DNS server entry for snom/yealink domains to point to our config server.  
-
-When the phone requests a config from the snom/yealink server, our server will complete te request.  
+User CRUD Template the I use as a start for a Flask App.  
 
 Running this app:  
 git clone this app to the server and in the folder created, create the following file:  
@@ -12,8 +8,8 @@ mkdir .env
 
 Add the following contents
 >PYTHON_VERSION=3.10.8  
-APP_NAME=Phone Manager  
-APP_DESCRIPTION=Management app for SNOM and Yealink IP Phones  
+APP_NAME=Application name  
+APP_DESCRIPTION=Application description  
 USE_POSTGRES=0  
 POSTGRES_USER=webapp  
 POSTGRES_PASSWORD=passmedb  
@@ -26,8 +22,8 @@ GUNICORN_WORKERS=1
 LOG_LEVEL=debug  
 SECRET_KEY=not-so-secret  
 CRYPT_KEY=fiujwefiwefbweifbiewbfiewb  
-EMAIL_USER=your@email.address  
-EMAIL_PASSWORD=test`  
+EMAIL_USER=<your@email.address>  
+EMAIL_PASSWORD=email_pass  
 
 Python version 3.10+ required  
 
