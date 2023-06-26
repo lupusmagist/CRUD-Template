@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+<!-- Header Modification-->
+{% block head %}
+{{ super() }}
+<title>Admin User Management</title>
+
+{% endblock %}
+
+<!-- Navigation -->
+{% block nav %}
+{% include "aum/components/nav/nav.html" %}
+{% endblock %}
+
+<!-- Page content-->
+{% block content %}
+<div class="container-lg">
+  <div class="text-center mt-3">
+    <h1>Admin User Management</h1>
+  </div>
+</div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="row">
+  <div class="col d-none d-sm-grid"></div>
+  <div class="col">
+    {% for category, message in messages %}
+    <div style="margin-bottom: -50px" class="alert {{ category }} text-center" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  <div class="col d-none d-sm-grid"></div>
+</div>
+{% endif %}
+{% endwith %}
+<div class="container-lg mt-5">
+  <table class="table table-sm table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Name</th>
+        <th scope="col" class="d-none d-sm-table-cell">Level</th>
+        <th scope="col" class="d-none d-sm-table-cell">State</th>
+        <th scope="col" class="">
+          <a class="btn btn-success btn-sm px-3 mx-3" href="{{ url_for('aum.user_add') }}">Add User</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in user_list %}
+      <tr>
+        <td class="">{{user.email}}</td>
+        <td>{{user.fname + " " + user.lname}}</td>
+        <td class="d-none d-sm-table-cell">{{user.role | capitalize}}</td>
+        {% if user.active%}
+        <td class="d-none d-sm-table-cell">Enabled</td>
+        {% else %}
+        <td class="d-none d-sm-table-cell">Disabled</td>
+        {% endif %}
+        <td>
+          <div class="btn-group-sm btn">
+            <a class="btn btn-primary btn-sm px-3 mb-1 mb-sm-0"
+              href="{{ url_for('aum.user_modify', id=user.id) }}">Edit</a>
+            <a class="btn btn-danger btn-sm" href="{{ url_for('aum.user_delete', id=user.id) }}">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock %}
+
+<!-- Modals-->
+{% block modal %}
+{% include "aum/components/modals/login.html" %}
+{% endblock %}

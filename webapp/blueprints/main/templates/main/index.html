@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<title>Phone Manager</title>
+
+{% endblock %}
+
+<!-- Navigation -->
+{% block nav %}
+{% include "main/components/nav/nav.html" %}
+{% endblock %}
+
+
+{% block content %}
+<!-- Page content-->
+<div class="container">
+  <div class="text-center mt-5">
+    <h1>Phone and Extension Mangement</h1>
+    <p class="lead">A Extension list should be displayed here</p>
+  </div>
+</div>
+{% endblock %}
+
+<!-- Modals-->
+{% block modal %}
+{% include "main/components/modals/login.html" %}
+{% endblock %}

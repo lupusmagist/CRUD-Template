@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+<!-- Header Modification-->
+{% block head %}
+{{ super() }}
+<title>Admin User Management</title>
+
+{% endblock %}
+
+<!-- Navigation -->
+{% block nav %}
+{% include "aum/components/nav/nav.html" %}
+{% endblock %}
+
+<!-- Page content-->
+{% block content %}
+{% if new_user %}
+<div class="container">
+    <div class="text-center mt-3">
+        <h1>Add New Admin User</h1>
+    </div>
+</div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="row">
+    <div class="col d-none d-sm-grid"></div>
+    <div class="col">
+        {% for category, message in messages %}
+        <div style="margin-bottom: -50px" class="alert {{ category }} text-center" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col d-none d-sm-grid"></div>
+</div>
+{% endif %}
+{% endwith %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="mx-auto col-8 col-md-8 col-lg-6">
+            <form method="POST" action="{{ url_for('aum.user_add') }}">
+                <div class="form-group mb-2 position-relative">
+                    <label for="email">Email address</label>
+                    <input id="email" type="text" class="form-control" name="email" aria-describedby="emailHelp"
+                        placeholder="Enter email" required>
+                    <div id="validationEmail" class="invalid-tooltip"></div>
+                </div>
+
+                <div class="form-group mb-2">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="fname">Firstname</label>
+                    <input type="fname" class="form-control" name="fname" placeholder="Firstname" required>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="lname">Lastname</label>
+                    <input type="lname" class="form-control" name="lname" placeholder="Lastname" required>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="role">Select User Role</label>
+                    <select name="role" class="form-control">
+                        <option value="ADMIN" selected>Admin</option>
+                        <option value="MANAGER">Manager</option>
+                    </select>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="active">
+                    <label class="form-check-label" for="gridCheck">
+                        Enable User
+                    </label>
+                </div>
+                <div class="pt-2 text-center">
+                    <button id="btn" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<!-- Edit a existing user   --------------------------------------->
+<div class="container">
+    <div class="text-center mt-3">
+        <h1>Edit User</h1>
+    </div>
+</div>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+<div class="row">
+    <div class="col d-none d-sm-grid"></div>
+    <div class="col">
+        {% for category, message in messages %}
+        <div style="margin-bottom: -50px" class="alert {{ category }} text-center" role="alert">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="col d-none d-sm-grid"></div>
+</div>
+{% endif %}
+{% endwith %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="mx-auto col-8 col-md-8 col-lg-6">
+            <form method="POST" action="{{ url_for('aum.user_modify', id=user.id) }}">
+                <div class="form-group mb-2">
+                    <label for="email">Email address</label>
+                    <input id="email" type="text" class="form-control" name="email" aria-describedby="emailHelp"
+                        placeholder="Enter email" value="{{user.email}}" required>
+                    <div id="validationEmail" class="invalid-tooltip"></div>
+                </div>
+
+                <!-- <div class="form-group mb-2">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                </div> -->
+                <div class="form-group mb-2">
+                    <label for="fname">Firstname</label>
+                    <input type="fname" class="form-control" name="fname" placeholder="Firstname" value="{{user.fname}}"
+                        required>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="lname">Lastname</label>
+                    <input type="lname" class="form-control" name="lname" placeholder="Lastname" value="{{user.lname}}"
+                        required>
+                </div>
+                <div class="form-group mb-2">
+                    <label for="role">Select User Role</label>
+                    <select name="role" class="form-control">
+                        {% if user.role == 'ADMIN' %}
+                        <option value="ADMIN" selected>Admin</option>
+                        <option value="MANAGER">Manager</option>
+                        {% else %}
+                        <option value="ADMIN">Admin</option>
+                        <option value="MANAGER" selected>Manager</option>
+                        {% endif %}
+                    </select>
+                </div>
+                <div class="form-check mb-2">
+                    {% if user.active %}
+                    <input class="form-check-input" type="checkbox" name="active" checked>
+                    {% else %}
+                    <input class="form-check-input" type="checkbox" name="active">
+                    {% endif %}
+                    <label class="form-check-label" for="gridCheck">
+                        Enable User
+                    </label>
+                </div>
+                <div class="pt-2 text-center">
+                    <button id="btn" type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                <div class="pt-4 text-center">
+                    <a class="btn btn-primary" data-bs-toggle="modal" href="#changepassword"
+                        data-bs-target="#passwordModal">Change
+                        Password</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+<!-- Modals-->
+{% block modal %}
+{% include "aum/components/modals/password.html" %}
+{% endblock %}
+
+<!-- Scripts-->
+{% block scripts %}
+{% include "aum/components/scripts/validate.html" %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% block modal %}
+<!-- Edit Login Modal HTML -->
+<div id="loginModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark p-3">
+            <h5 class="text-center fw-light text-light">Login</h5>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+            {% endif %}
+            {% endwith %}
+            <form method="POST" action="{{ url_for('auth.login') }}">
+                <div class="form-outline mb-4">
+                    <label for="username" class="form-label text-light">Username</label>
+                    <input type="email" name="username" placeholder="Your Email Address" class="form-control">
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="password" class="form-label text-light">Password</label>
+                    <input type="password" name="password" placeholder="Your Password" class="form-control">
+                </div>
+                <div>
+                    <div class="d-grid pt-2">
+                        <button class="btn btn-primary btn-login fw-bold" type="submit">Sign in</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

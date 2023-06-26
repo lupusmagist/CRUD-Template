@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+{% block head %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
+  {% endblock %}
+</head>
+
+<body>
+  <!-- Navigation -->
+  {% block nav %}
+  {% endblock %}
+
+  <!-- Heading -->
+  {% block heading %}
+  {% endblock %}
+
+  <!-- Menu -->
+  {% block menu %}
+  {% endblock %}
+
+  <!-- Centre Content -->
+  {% block content %}
+  {% endblock %}
+
+  <!-- Footer -->
+  {% block footer %}
+  {% include "footer.html" %}
+  {% endblock %}
+
+  {% block modal %}
+  {% endblock %}
+
+  <script src="{{ url_for('static', filename='js/jquery-3.3.1.slim.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+  {% block scripts %}
+  {% endblock %}
+</body>
+
+</html>

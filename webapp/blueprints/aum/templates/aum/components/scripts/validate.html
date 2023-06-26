@@ -1,0 +1,57 @@
+<script>
+    var button = document.getElementById("btn");
+    var email = document.getElementById("email");
+    var server_path = "/aum/user_validate_mail/";
+
+    async function checkEmailValidity(el) {
+
+        button.classList.add('loading');
+
+        var valid = await validateEmail(el.value);
+
+        if (valid) {
+            el.classList.add("is-valid");
+            el.classList.remove("is-invalid");
+            el.setCustomValidity("");
+            validationEmail.classList.remove("invalid-tooltip");
+            validationEmail.classList.add("valid-tooltip");
+        } else {
+            el.classList.remove("is-valid");
+            el.classList.add("is-invalid");
+            el.setCustomValidity("invalid");
+            validationEmail.classList.remove("valid-tooltip");
+            validationEmail.classList.add("invalid-tooltip");
+        }
+
+        button.classList.remove('loading');
+
+        return valid;
+
+    }
+
+    async function validateEmail(val) {
+
+        let email_url = server_path + email.value;
+        var result = await fetch(email_url)
+            .then(function (res) {
+                return res.json();
+            })
+            .then(function (json) {
+                if (json.message != null) validationEmail.textContent = json.message;
+                console.log(json.message);
+                return (json.status == 'OK');
+            });
+
+        return result;
+
+    }
+
+    email.addEventListener('blur', function (event) {
+        if (event.relatedTarget != button) checkEmailValidity(this);
+    }, false);
+
+    email.addEventListener('change', function (event) {
+        this.classList.remove("is-invalid");
+        this.setCustomValidity("");
+    }, false);
+</script>
