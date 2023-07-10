@@ -44,7 +44,7 @@ class User(db.Model):
         else:
             self.username = email
 
-        self.password = generate_password_hash(password, method='sha256')
+        self.password = generate_password_hash(password, method='scrypt')
 
         role = str.upper(role)
         accepted_roles = {'ADMIN', 'MANAGER'}
@@ -143,7 +143,7 @@ class User(db.Model):
 
     def create_password(self, password):
         """Create hashed password."""
-        self.password = generate_password_hash(password, method='sha256')
+        self.password = generate_password_hash(password, method='scrypt')
 
     def check_password(self, password):
         """Check hashed password."""
@@ -151,7 +151,7 @@ class User(db.Model):
 
     def set_password(id, password):
         user = db.session.query(User).get(int(id))
-        user.password = generate_password_hash(password, method='sha256')
+        user.password = generate_password_hash(password, method='scrypt')
         db.session.commit()
 
     def set_user_role(self, user_role):
