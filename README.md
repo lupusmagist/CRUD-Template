@@ -40,4 +40,5 @@ pip install environs
 pip install -e .  
 
 Test run with:  
+flask create-database  
 flask run  
