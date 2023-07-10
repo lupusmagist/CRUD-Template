@@ -42,3 +42,7 @@ pip install -e .
 Test run with:  
 flask create-database  
 flask run  
+
+Conenct to the example site with: <http://127.0.0.1:5000>  
+Username: <admin@example.com>  
+Password: password123  
