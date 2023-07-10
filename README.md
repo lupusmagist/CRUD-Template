@@ -1,6 +1,6 @@
 # Basic CRUD template
 
-User CRUD Template that I use as a start for a Flask App.
+User CRUD Template that I use as a start for a Flask App.  
 CSS in Bootstrap to keep it simple.  
 
 Running this app:  
@@ -43,6 +43,6 @@ Test run with:
 flask create-database  
 flask run  
 
-Conenct to the example site with: <http://127.0.0.1:5000>  
+Connect to the example site with: <http://127.0.0.1:5000>  
 Username: <admin@example.com>  
 Password: password123  
