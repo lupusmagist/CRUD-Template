@@ -1,10 +1,11 @@
 # Basic CRUD template
 
-User CRUD Template the I use as a start for a Flask App.  
+User CRUD Template that I use as a start for a Flask App.
+CSS in Bootstrap to keep it simple.  
 
 Running this app:  
-git clone this app to the server and in the folder created, create the following file:  
-mkdir .env  
+git clone this app and in the folder created, create the following file:  
+vi .env  
 
 Add the following contents
 >PYTHON_VERSION=3.10.8  
@@ -29,10 +30,12 @@ Python version 3.10+ required
 
 Run the following:  
 
-python -m venv .venv  
-.venv/bin/activate  
+cd CRUD-Template
+python3 -m venv .venv  
+source venv/bin/activate  
 pip install --upgrade setuptools  
 pip install --upgrade pip  
+pip install --upgrade wheel  
 pip install environs  
 pip install -e .  
 
