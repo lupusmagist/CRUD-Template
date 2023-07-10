@@ -212,8 +212,8 @@ class User(db.Model):
 
 @event.listens_for(User.__table__, 'after_create')
 def create_users(*args, **kwargs):
-    new_admin = User('Danie', 'Cornelius',
-                     'danie@danchan.co.za',
+    new_admin = User('Admin', 'Admin',
+                     'admin@example.com',
                      'password123', 'admin')
     User.create(new_admin)
     db.session.commit()
