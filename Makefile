@@ -6,6 +6,7 @@ venv-install:
 	python -m venv .venv; \
 	. .venv/bin/activate; \
 	pip install --upgrade setuptools; \
+	pip install --upgrade wheel; \
 	pip install --upgrade pip; \
 	pip install environs; \
 	pip install -e .; \
