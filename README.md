@@ -30,6 +30,7 @@ Python version 3.10+ required
 
 Run the following:  
 
+```bash
 cd CRUD-Template
 python3 -m venv .venv  
 source venv/bin/activate  
@@ -38,10 +39,32 @@ pip install --upgrade pip
 pip install --upgrade wheel  
 pip install environs  
 pip install -e .  
+```
 
 Test run with:  
+
+```bash
 flask create-database  
-flask run  
+flask run
+```  
+
+Connect to the example site with: <http://127.0.0.1:5000>  
+Username: <admin@example.com>  
+Password: password123
+
+### Running on Docker
+
+1. Create a build from present Dockerfile in this project
+
+```bash
+docker build --tag python-docker .
+```
+
+2. Run Docker container created on step 1
+
+```bash
+docker run -d -p 5000:5000 python-docker
+```
 
 Connect to the example site with: <http://127.0.0.1:5000>  
 Username: <admin@example.com>  
