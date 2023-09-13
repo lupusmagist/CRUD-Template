@@ -31,6 +31,8 @@ class ProductionConfig(Config):
             + POSTGRES_PASSWORD \
             + '@' \
             + POSTGRES_SERVER \
+	    + ':' \
+	    + POSTGRES_PORT \
             + '/' \
             + POSTGRES_DB
     else:
@@ -50,7 +52,9 @@ class DevelopmentConfig(Config):
             + ':' \
             + POSTGRES_PASSWORD \
             + '@' \
-            + POSTGRES_SERVER \
+    	    + POSTGRES_SERVER \
+   	    + ':' \
+	    + POSTGRES_PORT \
             + '/' \
             + POSTGRES_DB
     else:
