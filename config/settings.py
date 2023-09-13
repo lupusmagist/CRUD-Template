@@ -20,7 +20,7 @@ class Config:
 
 
 class ProductionConfig(Config):
-    if env.str('USE_POSTGRES') == 0:
+    if env.str('USE_POSTGRES') == '1':
         POSTGRES_USER = env.str('POSTGRES_USER')
         POSTGRES_PASSWORD = env.str('POSTGRES_PASSWORD')
         POSTGRES_DB = env.str('POSTGRES_DB')
@@ -40,7 +40,7 @@ class ProductionConfig(Config):
 
 
 class DevelopmentConfig(Config):
-    if env.str('USE_POSTGRES') == 0:
+    if env.str('USE_POSTGRES') == '1':
         POSTGRES_USER = env.str('POSTGRES_USER')
         POSTGRES_PASSWORD = env.str('POSTGRES_PASSWORD')
         POSTGRES_DB = env.str('POSTGRES_DB')
