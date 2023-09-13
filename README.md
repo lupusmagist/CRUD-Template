@@ -46,6 +46,7 @@ Test run with:
 
 ```bash
 flask create-database  
+flask create-default-users
 flask run
 ```  
 
