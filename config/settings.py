@@ -25,14 +25,15 @@ class ProductionConfig(Config):
         POSTGRES_PASSWORD = env.str('POSTGRES_PASSWORD')
         POSTGRES_DB = env.str('POSTGRES_DB')
         POSTGRES_SERVER = env.str('POSTGRES_SERVER')
+        POSTGRES_PORT = env.str('POSTGRES_PORT')
         SQLALCHEMY_DATABASE_URI = 'postgresql://' \
             + POSTGRES_USER \
             + ':' \
             + POSTGRES_PASSWORD \
             + '@' \
             + POSTGRES_SERVER \
-	    + ':' \
-	    + POSTGRES_PORT \
+            + ':' \
+            + POSTGRES_PORT \
             + '/' \
             + POSTGRES_DB
     else:
@@ -46,15 +47,16 @@ class DevelopmentConfig(Config):
         POSTGRES_USER = env.str('POSTGRES_USER')
         POSTGRES_PASSWORD = env.str('POSTGRES_PASSWORD')
         POSTGRES_DB = env.str('POSTGRES_DB')
+        POSTGRES_PORT = env.str('POSTGRES_PORT')
         POSTGRES_SERVER = env.str('POSTGRES_SERVER')
         SQLALCHEMY_DATABASE_URI = 'postgresql://' \
             + POSTGRES_USER \
             + ':' \
             + POSTGRES_PASSWORD \
             + '@' \
-    	    + POSTGRES_SERVER \
-   	    + ':' \
-	    + POSTGRES_PORT \
+            + POSTGRES_SERVER \
+            + ':' \
+            + POSTGRES_PORT \
             + '/' \
             + POSTGRES_DB
     else:
