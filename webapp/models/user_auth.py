@@ -210,7 +210,7 @@ class User(db.Model):
         return f'User: {self.fname} {self.lname}'
 
 
-@event.listens_for(User.__table__, 'after_create')
+# @event.listens_for(User.__table__, 'after_create')
 def create_users(*args, **kwargs):
     new_admin = User('Admin', 'Admin',
                      'admin@example.com',

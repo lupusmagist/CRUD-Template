@@ -47,6 +47,7 @@ def create_app(settings_override=None):
 
     @app.cli.command("create-database")
     def create_database():
+        print(app.config['SQLALCHEMY_DATABASE_URI'])
         db.create_all()
 
     @app.cli.command("drop-database")
